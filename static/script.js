@@ -12,28 +12,26 @@ document.getElementById('submit-transaction').addEventListener('click', async ()
 
     const result = await response.json();
     alert(result.message);
+
     document.getElementById('voter_id').value = '';
     document.getElementById('party').value = '';
+    
+    // Fetch and display the current transactions
+    fetchCurrentTransactions();
 });
 
-document.getElementById('mine-block').addEventListener('click', async () => {
-    const response = await fetch('/mine', {
-        method: 'GET'
-    });
-
-    const result = await response.json();
-    alert(result.message);
-    fetchBlockchain();
-});
-
-async function fetchBlockchain() {
+async function fetchCurrentTransactions() {
     const response = await fetch('/chain', {
         method: 'GET'
     });
 
     const result = await response.json();
-    document.getElementById('blockchain').innerText = JSON.stringify(result.chain, null, 2);
+    const transactions = result.chain[result.chain.length - 1].transactions; // Get transactions from the latest block
+    document.getElementById('transactions').innerText = JSON.stringify(transactions, null, 2);
 }
 
-// Load the blockchain when the page is loaded
-window.onload = fetchBlockchain;
+// Load the blockchain and transactions when the page is loaded
+window.onload = async () => {
+    await fetchBlockchain();
+    await fetchCurrentTransactions();
+};
