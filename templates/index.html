@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Voting System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Blockchain Voting System</h1>
+        <div id="transactions">
+            <h2>New Transaction</h2>
+            <input type="text" id="voter_id" placeholder="Voter ID">
+            <input type="text" id="party" placeholder="Party">
+            <button id="submit-transaction">Submit Transaction</button>
+        </div>
+
+        <div id="mine">
+            <h2>Mine a New Block</h2>
+            <button id="mine-block">Mine Block</button>
+        </div>
+
+        <div id="chain">
+            <h2>Blockchain</h2>
+            <pre id="blockchain"></pre>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
